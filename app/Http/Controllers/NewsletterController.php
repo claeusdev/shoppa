@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\Newsletter\Contracts\NewsletterContract;
+use App\Exceptions\UserAlreadySubscribedException;
 
 class NewsletterController extends Controller
 {
@@ -20,9 +21,16 @@ class NewsletterController extends Controller
 			'email' => 'required|email',
 		]);
 
-		$this->newsletter->subscribe(
+		try {
+			$this->newsletter->subscribe(
 				config('services.mailchimp.list'), 
 				$request->email);
+		} catch (UserAlreadySubscribedException $e) {
+			return redirect()->back()->withInput()->withErrors([
+				'email'	=> $e->getMessage(),
+			]);
+		}
+		
 
 		return redirect()->back();
 	}

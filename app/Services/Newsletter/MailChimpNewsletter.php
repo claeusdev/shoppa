@@ -4,6 +4,8 @@ namespace App\Services\Newsletter;
 
 use App\Services\Newsletter\Contracts\NewsletterContract;
 use Mailchimp;
+use Mailchimp_List_AlreadySubscribed;
+use App\Exceptions\UserAlreadySubscribedException;
 
 
 class MailChimpNewsletter implements NewsletterContract
@@ -17,6 +19,13 @@ class MailChimpNewsletter implements NewsletterContract
 
 	public function subscribe($listId, $email, $mergeVars = [])
 	{
-		$this->client->lists->subscribe($listId, ['email' => $email], $mergeVars);
+		try {
+			$this->client->lists->subscribe($listId, ['email' => $email], $mergeVars); 
+		} catch (Mailchimp_List_AlreadySubscribed $e) {
+			
+			throw new UserAlreadySubscribedException;
+			
+		}
+		
 	}
 }
