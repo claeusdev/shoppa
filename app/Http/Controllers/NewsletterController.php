@@ -16,6 +16,14 @@ class NewsletterController extends Controller
 
 	public function create(Request $request)
 	{
-		dd($this->newsletter);
+		$this->validate($request, [
+			'email' => 'required|email',
+		]);
+
+		$this->newsletter->subscribe(
+				config('services.mailchimp.list'), 
+				$request->email);
+
+		return redirect()->back();
 	}
 }

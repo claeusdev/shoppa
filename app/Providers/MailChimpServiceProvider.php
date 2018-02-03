@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Newsletter\MailChimpNewsletter;
 use App\Services\Newsletter\Contracts\NewsletterContract;
+use Mailchimp;
 
 class MailChimpServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,8 @@ class MailChimpServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(NewsletterContract::class, function($app){
-            return new MailChimpNewsletter;
+            $client = new Mailchimp($app->config->get('services.mailchimp.secret'));
+            return new MailChimpNewsletter($client);
         });
     }
 }

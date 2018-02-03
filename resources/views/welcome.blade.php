@@ -15,9 +15,15 @@
     </head>
     <body>
        <form action="{{ route('newsletter.create') }}" method="post">
-           <label for="email">
+           <label for="email"> Email
                <input type="email" name="email" id="email">
            </label>
+           @if ($errors->has('email'))
+             {{-- expr --}}
+             <div class="error">
+               {{ $errors->first('email')}}
+             </div>
+           @endif
            <input type="submit" value="Subscribe">
            {{ csrf_field() }}
        </form>
