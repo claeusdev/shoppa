@@ -8,24 +8,39 @@
         <title>Shopaholicks</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto+Slab" rel="stylesheet">
         <!-- Styles -->
-        
+        <link href="/css/app.css" rel="stylesheet">
+
     </head>
     <body>
-       <form action="{{ route('newsletter.create') }}" method="post">
-           <label for="email"> Email
-               <input type="email" name="email" id="email">
-           </label>
-           @if ($errors->has('email'))
-             {{-- expr --}}
-             <div class="error">
-               {{ $errors->first('email')}}
-             </div>
-           @endif
-           <input type="submit" value="Subscribe">
-           {{ csrf_field() }}
-       </form>
+      <div class="page-wrapper">
+        <div class="page-wrapper__image" style="background-image: url('images/desktop.jpg');"></div>
+        <div class="page-wrapper__content">
+          <h1>Shopaholicks.</h1>
+          <p class="pl">
+            Starting an online shop has never been easier.
+          </p>
+
+          <p class="pl">
+            Whether you sell online, on social media, in store, or out of the trunk of your car, Shopaholicks is about to make it a whole lot easier.
+          </p>
+          
+            <form action="{{ route('newsletter.create') }}" method="post">
+              <div class="form-container">
+                <input type="email" name="email" id="email" class="form-input" placeholder="Email address">
+                <input type="submit" value="Subscribe" class="button">
+                @if ($errors->has('email'))
+                 {{-- expr --}}
+                  <div class="error">
+                    {{ $errors->first('email')}}
+                  </div>
+                @endif
+              </div>
+              
+             {{ csrf_field() }}
+           </form>          
+        </div>
+      </div>
     </body>
 </html>
