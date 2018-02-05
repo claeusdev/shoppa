@@ -23,7 +23,7 @@
           </p>
 
           <p class="pl">
-            Whether you sell online, on social media, in store, or out of the trunk of your car, Shopaholicks is about to make it a whole lot easier.
+            Whether you sell online, on social media, in a shop, or out of the trunk of your car, Shopaholicks is about to make it a whole lot easier.
           </p>
           <p class="pl">
             <em class="highlight">Sign up to get early access.</em>
