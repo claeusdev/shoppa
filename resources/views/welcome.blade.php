@@ -38,6 +38,10 @@
                   <div class="error">
                     {{ $errors->first('email')}}
                   </div>
+                @else (Session::get('success'))
+                  <div class="success">
+                    {{ Session::get('success') }}
+                  </div>
                 @endif
               </div>
               

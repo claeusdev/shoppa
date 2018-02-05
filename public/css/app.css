@@ -8552,7 +8552,8 @@ hr {
   }
 }
 
-.highlight {
+.highlight,
+.success {
   border-radius: 1em 0 1em 0;
   background-image: linear-gradient(-100deg, rgba(42, 178, 123, 0.3), #2ab27b 95%, rgba(42, 178, 123, 0.1));
 }

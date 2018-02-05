@@ -25,6 +25,7 @@ class NewsletterController extends Controller
 			$this->newsletter->subscribe(
 				config('services.mailchimp.list'), 
 				$request->email);
+			return redirect()->back()->with('success','Succesfully subscribed, check email to confirm subscription.');
 		} catch (UserAlreadySubscribedException $e) {
 			return redirect()->back()->withInput()->withErrors([
 				'email'	=> $e->getMessage(),
@@ -32,6 +33,6 @@ class NewsletterController extends Controller
 		}
 		
 
-		return redirect()->back();
+		
 	}
 }
